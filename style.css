@@ -1,0 +1,129 @@
+body {
+	font-family: sans-serif;
+	font-size: 18px;
+}
+
+label {
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+/*** Check boxes ***/
+
+/* Actual checkbox is invisible, but sets height of flow for fake checkbox */
+input[type=checkbox] {
+	box-sizing: border-box;
+	visibility: hidden;
+
+	margin-right: 12px;
+
+	width: 48px;
+	height: 48px;
+}
+
+/* Vertically center label */
+input[type=checkbox]+span {
+	line-height: 48px;
+}
+
+/* Use ::after pseudoelement to make fake checkbox */
+input[type=checkbox]::after {
+	visibility: visible;
+	box-sizing: border-box;
+	display: inline-block;
+
+	width: 48px;
+	height: 48px;
+
+	background: white;
+	border-radius: 24px;
+	content: '?';
+	text-align: center;
+	font-size: 48px;
+	line-height: 48px;
+	color: black;
+
+	transform: rotate(-360deg);
+	transition: transform 300ms ease, background 300ms ease;
+}
+
+/* Use :checked selector on real checkbox to style fake checkbox */
+input[type=checkbox]:checked::after {
+	content: ' ';
+	transform: rotate(0deg);
+}
+
+input.et[type=checkbox]:checked::after {
+	border-top: 16px solid blue;
+	background: black;
+	border-bottom: 16px solid #ccc;
+}
+
+input.lt[type=checkbox]:checked::after {
+	border-top: 16px solid yellow;
+	background: green;
+	border-bottom: 16px solid red;
+}
+
+input.ro[type=checkbox]:checked::after {
+	border-left: 16px solid blue;
+	background: yellow;
+	border-right: 16px solid red;
+}
+
+input.de[type=checkbox]:checked::after {
+	border-top: 16px solid black;
+	background: yellow;
+	border-bottom: 16px solid red;
+}
+
+input.fr[type=checkbox]:checked::after {
+	border-left: 16px solid blue;
+	background: white;
+	border-right: 16px solid red;
+}
+
+/*** Radio boxes - exactly the same method as for check boxes ***/
+
+/* Actual checkbox is invisible, but sets height of flow for fake checkbox */
+input[type=radio] {
+	box-sizing: border-box;
+	visibility: hidden;
+
+	margin: 8px;
+
+	width: 16px;
+	height: 16px;
+}
+
+/* Vertically center label */
+input[type=radio]+span {
+	line-height: 32px;
+}
+
+/* Use ::after pseudoelement to make fake checkbox */
+input[type=radio]::after {
+	visibility: visible;
+	box-sizing: border-box;
+	display: inline-block;
+
+	width: 16px;
+	height: 16px;
+
+	background: white;
+	border: 2px inset silver;
+	content: '\2718';
+	font-size: 12px;
+	line-height: 12px;
+	color: white;
+
+	transition: color 300ms ease;
+}
+
+/* Use :checked selector on real checkbox to style fake checkbox */
+input[type=radio]:checked::after {
+	background: white;
+
+	text-align: center;
+	color: black;
+}
